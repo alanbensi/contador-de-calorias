@@ -1,9 +1,3 @@
-// function saludar (nombreUsuario) {
-//     const NOMBRE = prompt (nombreUsuario);
-//     alert ("Hola " + NOMBRE);
-// }
-// saludar ("Ingresa tu nombre"); 
-
 // function calculoIMC (pesoUsuario, tallaUsuario) {
 //     let tallaAlCuadrado = (tallaUsuario * tallaUsuario);
 //     let resultadoPesoTalla = (pesoUsuario / tallaAlCuadrado);
@@ -14,35 +8,19 @@
 
 // calculoIMC ();
 
-// function caloriasAlimento() {
-//     let opcionesAlimentos = parseInt (prompt ("ELEGI UNO DE ESTOS ALIMENTOS PARA VER SUS CALORIAS EN 100 GRAMOS: \n1. Huevo \n2. Leche \n3. Leche descremada"))
-//     switch (opcionesAlimentos) {
-//         case 1:
-//             opcionesAlimentos = "Huevo (100gr): 156 kcal";
-//             break;
-//         case 2:
-//             opcionesAlimentos = "Leche (100gr): 59 kcal";
-//             break;
-//         case 3:
-//             opcionesAlimentos = "Leche descremada (100gr): 45,5 kcal";
-//             break;
-//     }
-//     return opcionesAlimentos;
-// }
-
-// let respuestaOpcionesAlimentos = caloriasAlimento();
-// alert ("Elegiste " + respuestaOpcionesAlimentos);
-
 class alimento {
     constructor (nombre, hidratosDeCarbono, proteinas, lipidos) {
     this.nombre = nombre;
     this.hidratos = hidratosDeCarbono;
     this.proteinas = proteinas;
     this.lipidos = lipidos;
-    this.composicion = `${hidratosDeCarbono} Hidratos de Carbono, ${proteinas} Proteinas y ${lipidos} Lipidos`;
+    this.composicion = `El alimento es ${nombre} y contiene: 
+        ${hidratosDeCarbono} Hidratos de Carbono
+        ${proteinas} Proteinas 
+        ${lipidos} Lipidos`;
     }
     macrosAlimento (){
-        alert (this.composicion);
+        console.log (this.composicion);
     }
 }
 const huevo = new alimento ("Huevo",0, 12, 12);
@@ -52,32 +30,65 @@ huevo.macrosAlimento ();
 lecheEntera.macrosAlimento ();
 lecheDescremada.macrosAlimento ();
 
-let hidratosDeCarbonoTotal; 
-let proteinaTotal; 
-let lipidosTotal; 
+let hidratosDeCarbonoTotal = 0; 
+let proteinaTotal = 0; 
+let lipidosTotal = 0; 
+let caloriasTotales = hidratosDeCarbonoTotal + proteinaTotal + lipidosTotal;
+
+let totalesMacronutrientes = [hidratosDeCarbonoTotal, proteinaTotal, lipidosTotal, caloriasTotales];
+
+totalesMacronutrientes.map (item => {
+    const divDom = document.createElement ("DIV");
+    console.log (divDom); 
+})
+// arrayAlimentos.map (function (item) {multiplicarHidratos (50, item)});
+// arrayAlimentos.map (function (item) {multiplicarProt (50, item)});
+// arrayAlimentos.map (function (item) {multiplicarLipidos (50, item)});
 
 function multiplicarHidratos (cantidad, alimento) {
     let hdc = alimento.hidratos; 
     let hdcTotal = (hdc * cantidad) /100;
-    hidratosDeCarbonoTotal= hidratosDeCarbonoTotal + hdcTotal; 
-    console.log (`El alimento elegido es: ${alimento.nombre} y tiene ${hdcTotal} hidratos de carbono en la cantidad de alimento ingresada`); 
+    hidratosDeCarbonoTotal= hidratosDeCarbonoTotal + hdcTotal;
+    let boxHDC = document.getElementById ("boxHDC");
+    boxHDC.innerHTML = hidratosDeCarbonoTotal;
 }
 function multiplicarProt (cantidad, alimento) {
     let prot = alimento.proteinas; 
     let protTotal = (prot * cantidad) /100;
-    proteinaTotal= proteinaTotal + protTotal; 
-    console.log (`El alimento elegido es: ${alimento.nombre} y tiene ${protTotal} proteinas en la cantidad de alimento ingresada`); 
+    proteinaTotal= proteinaTotal + protTotal;
+    let boxProt = document.getElementById ("boxProt");
+    boxProt.innerHTML = proteinaTotal;
 }
 function multiplicarLipidos (cantidad, alimento) {
     let grasas = alimento.lipidos; 
     let grasasTotal = (grasas * cantidad) /100;
     lipidosTotal = lipidosTotal + grasasTotal; 
-    console.log (`El alimento elegido es: ${alimento.nombre} y tiene ${grasasTotal} lipidos en la cantidad de alimento ingresada`); 
+    let boxLip = document.getElementById ("boxLip");
+    boxLip.innerHTML = lipidosTotal;
 }
 
-const arrayAlimentos = [huevo, lecheEntera, lecheDescremada]; 
-arrayAlimentos.map (function (item) {multiplicarHidratos (50, item)});
-arrayAlimentos.map (function (item) {multiplicarProt (50, item)});
-arrayAlimentos.map (function (item) {multiplicarLipidos (50, item)});
+let inputHuevo = document.getElementById ("inputHuevo");
+let inputLecheEntera = document.getElementById ("inputLecheEntera");
+let inputLecheDescremada = document.getElementById("inputLecheDescremada");  
+function mostrarInput () {
+    let huevoValue = inputHuevo.value;
+    let lecheEnteraValue = inputLecheEntera.value;
+    let lecheDescremadaValue = inputLecheDescremada.value;
+    console.log (huevoValue, lecheDescremadaValue, lecheEnteraValue);
+} 
 
+// HIDRATOS DE CARBONO INPUTS 
+inputHuevo.addEventListener ("change", ()=> multiplicarHidratos (inputHuevo.value, huevo)); 
+inputLecheEntera.addEventListener ("change", ()=> multiplicarHidratos (inputLecheEntera.value, lecheEntera));
+inputLecheDescremada.addEventListener ("change", ()=> multiplicarHidratos (inputLecheDescremada.value, lecheDescremada));
+
+// PROTEINAS INPUTS
+inputHuevo.addEventListener ("change", ()=> multiplicarProt (inputHuevo.value, huevo));
+inputLecheEntera.addEventListener ("change", ()=> multiplicarProt (inputLecheEntera.value, lecheEntera));
+inputLecheDescremada.addEventListener ("change", ()=> multiplicarProt (inputLecheDescremada.value, lecheDescremada));
+
+// LIPIDOS INPUTS 
+inputHuevo.addEventListener ("change", ()=> multiplicarLipidos (inputHuevo.value, huevo));
+inputLecheEntera.addEventListener ("change", ()=> multiplicarLipidos (inputLecheEntera.value, lecheEntera));
+inputLecheDescremada.addEventListener ("change", ()=> multiplicarLipidos (inputLecheDescremada.value, lecheDescremada));
 

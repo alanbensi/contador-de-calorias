@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
-/* font-family: 'Open Sans', sans-serif; */
+/* font-family: 'Open Sans', sans-serif;
+font-family:  */
 
 *{
     margin: 0;
@@ -15,15 +16,54 @@ body {
     background-size: cover;
     color: white;
     z-index: 1000;
+    overflow-x: hidden;
 }
 
-.textNavBar {
+.header__nav__button {
+    color: white;
+    margin-top: 1rem;
+}
+
+.nav__div__ul {
+    padding: 2rem;
+}
+
+.nav__li {
+    border: solid 2px;
+    border-radius: 20px;
+    margin: 1rem;
+}
+
+.nav__li__1:hover {
+    background-color: cadetblue;
+}
+
+.nav__li__2:hover {
+    background-color: darksalmon;
+}
+
+.nav__li__3:hover {
+    background-color: darkseagreen;
+}
+
+.nav__li__4:hover {
+    background-color: teal;
+}
+
+.nav__li__a {
+    color: white;
+    text-decoration: none;
+    padding: 1.5rem;
+    font-size: 16px;
+}
+
+.nav__li__a:hover {
     color: white;
 }
 
 .titles {
     text-align: center;
-    margin: 3rem;
+    margin: 2rem;
 }
 .whiteTable {
     color: white;
@@ -48,4 +88,24 @@ body {
     height: 3rem;
     border-radius: 10px;
     margin: 1rem;
+    text-align: center;
+}
+
+.containerDivsImc {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.divGender, .divAge, .divHeight, .divWeight {
+    border: solid 3px white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 40%;
+    margin: 1rem;
+}
+
+.imgsGender, .imgAge, .imgHeight, .imgWeight {
+    width: 6rem;
 }

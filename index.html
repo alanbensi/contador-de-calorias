@@ -57,7 +57,7 @@
                                 <td>Huevo</td>
                                 <td>50 gr (1 huevo)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="Huevo" id="inputHuevo">
+                                    <input autocomplete="off" class="inputTable" type="number" name="huevo" id="inputHuevo">
                                 </td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                                 <td>Leche</td>
                                 <td>200 ml (1 Taza)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="inputLecheEntera">
+                                    <input autocomplete="off" class="inputTable" type="number" name="lecheEntera" id="inputLecheEntera">
                                 </td>
                             </tr>
                             <tr>
@@ -73,7 +73,7 @@
                                 <td>Leche Descremada</td>
                                 <td>200 ml (1 taza)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="inputLecheDescremada">
+                                    <input autocomplete="off" class="inputTable" type="number" name="lecheDescremada" id="inputLecheDescremada">
                                 </td>
                             </tr>
                             <!-- <tr>
@@ -186,8 +186,8 @@
                     <tbody>
                         <tr>
                             <td id="boxHDC" class="table-warning macrosBox"></td>
-                            <td id="boxProt" class="table-danger macrosBox"></td>
-                            <td id="boxLip" class="table-success macrosBox"></td>
+                            <td id="boxPROT" class="table-danger macrosBox"></td>
+                            <td id="boxLIP" class="table-success macrosBox"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -197,45 +197,52 @@
         <section>
             <h2 class="titles">CÁLCULO DEL IMC</h2>
             <h3>Para realizar un cálculo correcto necesitamos algunos datos sobre vos:</h3>
-            <div class="containerDivsImc row">
-                <div class="divGender col-sm-12 col-md-6">
-                    <h4>¿Cúal es tu género?</h4>
-                    <div>
-                        <img class="imgsGender" src="imagenes/man.png" alt="Icon of a man">
-                        <input type="radio" name="gender">
-                        <label for="">Hombre</label>
+            <form action="">
+                <div class="containerDivsImc row">
+                    <div class="divGender col-sm-12 col-md-6">
+                        <h4>¿Cúal es tu género?</h4>
+                        <div>
+                            <img class="imgsGender" src="imagenes/man.png" alt="Icon of a man">
+                            <input type="radio" name="gender" id="inputHombre">
+                            <label for="">Hombre</label>
+                        </div>
+                        <div>
+                            <img class="imgsGender" src="imagenes/girl.png" alt="Icon of a woman">
+                            <input type="radio" name="gender" id="inputMujer">
+                            <label for="">Mujer</label>
+                        </div>
+                    </div>
+                    <div class="divAge col-sm-12 col-md-6">
+                        <h4>¿Cúantos años tenés?</h4>
+                        <div>
+                            <img class="imgAge" src="imagenes/age-group.png" alt="Age">
+                            <input type="tel" placeholder="25" id="inputEdad">
+                            <label for="">Años</label>
+                        </div>
+                    </div>
+                    <div class="divHeight col-sm-12 col-md-6">
+                        <h4>¿Cúanto medís?</h4>
+                        <div>
+                            <img class="imgHeight" src="imagenes/altura.png" alt="Height">
+                            <input type="tel" placeholder="170" id="inputAltura">
+                            <label for="">CM</label>
+                        </div>
+                    </div>
+                    <div class="divWeight col-sm-12 col-md-6">
+                        <h4>¿Cúal es tu peso actual?</h4>
+                        <div>
+                            <img class="imgWeight" src="imagenes/peso.png" alt="Weight">
+                            <input type="tel" placeholder="75" id= "inputPeso">
+                            <label for="">KG</label>
+                        </div>
                     </div>
                     <div>
-                        <img class="imgsGender" src="imagenes/girl.png" alt="Icon of a woman">
-                        <input type="radio" name="gender">
-                        <label for="">Mujer</label>
+                        <div id="calculoIMC">CALCULO DE IMC</div>
+                        <div id="calculoPesoIdeal">CALCULO DE PESO IDEAL</div>
+                        <div id="calculoCalorias">CALCULO DE CALORIAS</div>
                     </div>
                 </div>
-                <div class="divAge col-sm-12 col-md-6">
-                    <h4>¿Cúantos años tenés?</h4>
-                    <div>
-                        <img class="imgAge" src="imagenes/age-group.png" alt="Age">
-                        <input type="tel" placeholder="25">
-                        <label for="">Años</label>
-                    </div>
-                </div>
-                <div class="divHeight col-sm-12 col-md-6">
-                    <h4>¿Cúanto medís?</h4>
-                    <div>
-                        <img class="imgHeight" src="imagenes/altura.png" alt="Height">
-                        <input type="tel" placeholder="170">
-                        <label for="">CM</label>
-                    </div>
-                </div>
-                <div class="divWeight col-sm-12 col-md-6">
-                    <h4>¿Cúal es tu peso actual?</h4>
-                    <div>
-                        <img class="imgWeight" src="imagenes/peso.png" alt="Weight">
-                        <input type="tel" placeholder="75">
-                        <label for="">KG</label>
-                    </div>
-                </div>
-            </div>
+            </form>
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

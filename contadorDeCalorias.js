@@ -1,12 +1,12 @@
-// function calculoIMC (pesoUsuario, tallaUsuario) {
-//     let tallaAlCuadrado = (tallaUsuario * tallaUsuario);
-//     let resultadoPesoTalla = (pesoUsuario / tallaAlCuadrado);
-//     alert (resultadoPesoTalla);
-// }
-// let pesoUsuario = prompt("¿Cuanto pesas? (Kilogramos) \nEj: 71.4");
-// let tallaUsuario = prompt ("¿Cúal es tu altura (metros) \nEj: 1.75"); 
+const inputs = Array.from (document.getElementsByClassName ("inputTable"));
+const boxHDC = document.getElementById ("boxHDC"); 
+const boxPROT = document.getElementById ("boxPROT"); 
+const boxLIP = document.getElementById ("boxLIP"); 
+const inputEdad = document.getElementById ("inputEdad"); 
+const inputAltura = document.getElementById ("inputAltura"); 
+const inputPeso = document.getElementById ("inputPeso");
+const infoGuardada = JSON.parse (localStorage.getItem ("usuario")); 
 
-// calculoIMC ();
 
 class alimento {
     constructor (nombre, hidratosDeCarbono, proteinas, lipidos) {
@@ -14,81 +14,68 @@ class alimento {
     this.hidratos = hidratosDeCarbono;
     this.proteinas = proteinas;
     this.lipidos = lipidos;
-    this.composicion = `El alimento es ${nombre} y contiene: 
-        ${hidratosDeCarbono} Hidratos de Carbono
-        ${proteinas} Proteinas 
-        ${lipidos} Lipidos`;
-    }
-    macrosAlimento (){
-        console.log (this.composicion);
     }
 }
 const huevo = new alimento ("Huevo",0, 12, 12);
 const lecheEntera = new alimento ("Leche entera",5, 3, 3);
 const lecheDescremada = new alimento ("Leche descremada",5, 3, 1.5);
-huevo.macrosAlimento ();
-lecheEntera.macrosAlimento ();
-lecheDescremada.macrosAlimento ();
-
-let hidratosDeCarbonoTotal = 0; 
-let proteinaTotal = 0; 
-let lipidosTotal = 0; 
-let caloriasTotales = hidratosDeCarbonoTotal + proteinaTotal + lipidosTotal;
-
-let totalesMacronutrientes = [hidratosDeCarbonoTotal, proteinaTotal, lipidosTotal, caloriasTotales];
-
-totalesMacronutrientes.map (item => {
-    const divDom = document.createElement ("DIV");
-    console.log (divDom); 
-})
-// arrayAlimentos.map (function (item) {multiplicarHidratos (50, item)});
-// arrayAlimentos.map (function (item) {multiplicarProt (50, item)});
-// arrayAlimentos.map (function (item) {multiplicarLipidos (50, item)});
 
 function multiplicarHidratos (cantidad, alimento) {
     let hdc = alimento.hidratos; 
     let hdcTotal = (hdc * cantidad) /100;
-    hidratosDeCarbonoTotal= hidratosDeCarbonoTotal + hdcTotal;
-    let boxHDC = document.getElementById ("boxHDC");
-    boxHDC.innerHTML = hidratosDeCarbonoTotal;
+    return hdcTotal;
 }
 function multiplicarProt (cantidad, alimento) {
     let prot = alimento.proteinas; 
     let protTotal = (prot * cantidad) /100;
-    proteinaTotal= proteinaTotal + protTotal;
-    let boxProt = document.getElementById ("boxProt");
-    boxProt.innerHTML = proteinaTotal;
+    return protTotal;
 }
 function multiplicarLipidos (cantidad, alimento) {
     let grasas = alimento.lipidos; 
     let grasasTotal = (grasas * cantidad) /100;
-    lipidosTotal = lipidosTotal + grasasTotal; 
-    let boxLip = document.getElementById ("boxLip");
-    boxLip.innerHTML = lipidosTotal;
+    return grasasTotal;
 }
 
-let inputHuevo = document.getElementById ("inputHuevo");
-let inputLecheEntera = document.getElementById ("inputLecheEntera");
-let inputLecheDescremada = document.getElementById("inputLecheDescremada");  
-function mostrarInput () {
-    let huevoValue = inputHuevo.value;
-    let lecheEnteraValue = inputLecheEntera.value;
-    let lecheDescremadaValue = inputLecheDescremada.value;
-    console.log (huevoValue, lecheDescremadaValue, lecheEnteraValue);
-} 
+const insertarTotal = ()=> {
+    let totalHDC = 0;
+    let totalPROT = 0; 
+    let totalLIP = 0; 
+    inputs.map (input => {
+        if (!isNaN (Number(input.value))) {
+            totalHDC = multiplicarHidratos (input.value, eval (input.name)) + totalHDC;
+            totalPROT = multiplicarProt (input.value, eval (input.name)) + totalPROT;
+            totalLIP = multiplicarLipidos (input.value, eval (input.name)) + totalLIP;
+            boxHDC.innerHTML = totalHDC;
+            boxPROT.innerHTML = totalPROT;
+            boxLIP.innerHTML = totalLIP;
+        }
+        else {
+            boxHDC.innerHTML = "Ingresá solo numeros";
+            boxPROT.innerHTML = "Ingresá solo numeros";
+            boxLIP.innerHTML = "Ingresá solo numeros";
+        }
+    })
+}
 
-// HIDRATOS DE CARBONO INPUTS 
-inputHuevo.addEventListener ("change", ()=> multiplicarHidratos (inputHuevo.value, huevo)); 
-inputLecheEntera.addEventListener ("change", ()=> multiplicarHidratos (inputLecheEntera.value, lecheEntera));
-inputLecheDescremada.addEventListener ("change", ()=> multiplicarHidratos (inputLecheDescremada.value, lecheDescremada));
+inputs.map (input=> (input.addEventListener ("keyup", insertarTotal))); 
 
-// PROTEINAS INPUTS
-inputHuevo.addEventListener ("change", ()=> multiplicarProt (inputHuevo.value, huevo));
-inputLecheEntera.addEventListener ("change", ()=> multiplicarProt (inputLecheEntera.value, lecheEntera));
-inputLecheDescremada.addEventListener ("change", ()=> multiplicarProt (inputLecheDescremada.value, lecheDescremada));
+const guardarInfo = () => {
+    const datosUsuario = {
+        edad: inputEdad.value,
+        altura: inputAltura.value, 
+        peso: inputPeso.value
+    }; 
+    const jsonUsuario = JSON.stringify (datosUsuario);
+    localStorage.setItem ("usuario", jsonUsuario);
+    console.log (jsonUsuario);
+}
 
-// LIPIDOS INPUTS 
-inputHuevo.addEventListener ("change", ()=> multiplicarLipidos (inputHuevo.value, huevo));
-inputLecheEntera.addEventListener ("change", ()=> multiplicarLipidos (inputLecheEntera.value, lecheEntera));
-inputLecheDescremada.addEventListener ("change", ()=> multiplicarLipidos (inputLecheDescremada.value, lecheDescremada));
+document.getElementById ("calculoIMC").addEventListener ("click", guardarInfo);
+document.getElementById ("calculoPesoIdeal").addEventListener ("click", guardarInfo); 
+document.getElementById ("calculoCalorias").addEventListener ("click", guardarInfo);
 
+if (infoGuardada){
+    inputEdad.value = infoGuardada.edad;
+    inputAltura.value = infoGuardada.altura;
+    inputPeso.value = infoGuardada.peso;
+};  

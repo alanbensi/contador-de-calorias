@@ -40,7 +40,7 @@
     <main>
         <h1 class="titles">CONTADOR DE CALORÍAS</h1>
         <div class="d-flex">
-            <div class="w-50">
+            <div class="w-50 containerTableFood">
                 <form action="">
                     <table class="table table-responsive whiteTable">
                         <thead>
@@ -76,170 +76,234 @@
                                     <input autocomplete="off" class="inputTable" type="number" name="lecheDescremada" id="inputLecheDescremada">
                                 </td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <th scope="row">4</th>
-                                <td>Huevo</td>
-                                <td>50 gr (1 huevo)</td>
+                                <td>Quesos</td>
+                                <td>60 gr (1 Cassete)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="quesos" id="inputQuesos">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">5</th>
-                                <td>Leche</td>
-                                <td>200 ml (1 Taza)</td>
+                                <td>Carne Vacuna</td>
+                                <td>100 gr (Tamaño palma de la mano)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="carneVacuna">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">6</th>
-                                <td>Leche Descremada</td>
-                                <td>200 ml (1 taza)</td>
+                                <td>Pollo</td>
+                                <td>100 gr (Tamaño palma de la mano)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="pollo">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">7</th>
-                                <td>Huevo</td>
-                                <td>50 gr (1 huevo)</td>
+                                <td>Pescado</td>
+                                <td>100 gr (Tamaño palma de la mano)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="pescado">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">8</th>
-                                <td>Leche</td>
-                                <td>200 ml (1 Taza)</td>
+                                <td>Vegetales</td>
+                                <td>150 gr (1 unidad mediana)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="vegetales">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">9</th>
-                                <td>Leche Descremada</td>
-                                <td>200 ml (1 taza)</td>
+                                <td>Papa, batata y choclo</td>
+                                <td>100 gr (1 unidad chica)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="tuberculos">
                                 </td>
-                            </tr><tr>
+                            </tr>
+                            <tr>
                                 <th scope="row">10</th>
-                                <td>Huevo</td>
-                                <td>50 gr (1 huevo)</td>
+                                <td>Frutas</td>
+                                <td>150 gr (1 unidad Mediana)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="frutas">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">11</th>
-                                <td>Leche</td>
-                                <td>200 ml (1 Taza)</td>
+                                <td>Cereales</td>
+                                <td>100-125 gr (1/4 de plato)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="cereales">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">12</th>
-                                <td>Leche Descremada</td>
-                                <td>200 ml (1 taza)</td>
+                                <td>Legumbres</td>
+                                <td>100-125 gr (1/4 de plato)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="legumbres">
                                 </td>
-                            </tr><tr>
+                            </tr>
+                            <tr>
                                 <th scope="row">13</th>
-                                <td>Huevo</td>
-                                <td>50 gr (1 huevo)</td>
+                                <td>Pan</td>
+                                <td>25 gr (1 rebanada de pan de molde)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="pan">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">14</th>
-                                <td>Leche</td>
-                                <td>200 ml (1 Taza)</td>
+                                <td>Azúcar</td>
+                                <td>5 gr (1 Cucharada tipo té)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="azucar">
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">15</th>
-                                <td>Leche Descremada</td>
-                                <td>200 ml (1 taza)</td>
+                                <td>Aceite</td>
+                                <td>15 gr (1 Cucharada sopera)</td>
                                 <td>
-                                    <input class="inputTable" type="text" name="" id="">
+                                    <input autocomplete="off" class="inputTable" type="number" name="aceite">
                                 </td>
-                            </tr> -->
+                            </tr>
+                            <tr>
+                                <th scope="row">16</th>
+                                <td>Manteca</td>
+                                <td>5 gr (1 Cucharada tipo té)</td>
+                                <td>
+                                    <input autocomplete="off" class="inputTable" type="number" name="manteca">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </form>
             </div>
             <div class="d-flex w-50">
-                <table class="table table-responsive table-borderless whiteTable macrosTable">
-                    <thead>
-                        <tr>
-                            <th class="macrosTitle" scope="col">HIDRATOS DE CARBONO</th>
-                            <th class="macrosTitle" scope="col">PROTEINAS</th>
-                            <th class="macrosTitle" scope="col">LIPIDOS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id="boxHDC" class="table-warning macrosBox"></td>
-                            <td id="boxPROT" class="table-danger macrosBox"></td>
-                            <td id="boxLIP" class="table-success macrosBox"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="progress" id="containerMacronutrientsTotals"></div>
-            </div>
-        </div>
-        <section>
-            <h2 class="titles">CÁLCULO DEL IMC</h2>
-            <h3>Para realizar un cálculo correcto necesitamos algunos datos sobre vos:</h3>
-            <form action="">
-                <div class="containerDivsImc row">
-                    <div class="divGender col-sm-12 col-md-6">
-                        <h4>¿Cúal es tu género?</h4>
+                <div class="macrosTable">
+                    <div class="d-flex justify-content-evenly">
                         <div>
-                            <img class="imgsGender" src="imagenes/man.png" alt="Icon of a man">
-                            <input type="radio" name="gender" id="inputHombre">
-                            <label for="">Hombre</label>
+                            <p class="macrosTitle">HIDRATOS DE CARBONO</p>
+                            <p id="boxHDC" class="bg-warning macrosBox"></p>
                         </div>
                         <div>
-                            <img class="imgsGender" src="imagenes/girl.png" alt="Icon of a woman">
-                            <input type="radio" name="gender" id="inputMujer">
-                            <label for="">Mujer</label>
+                            <p class="macrosTitle">PROTEINAS</p>
+                            <p id="boxPROT" class="bg-danger macrosBox"></p>
                         </div>
-                    </div>
-                    <div class="divAge col-sm-12 col-md-6">
-                        <h4>¿Cúantos años tenés?</h4>
                         <div>
-                            <img class="imgAge" src="imagenes/age-group.png" alt="Age">
-                            <input type="tel" placeholder="25" id="inputEdad">
-                            <label for="">Años</label>
-                        </div>
-                    </div>
-                    <div class="divHeight col-sm-12 col-md-6">
-                        <h4>¿Cúanto medís?</h4>
-                        <div>
-                            <img class="imgHeight" src="imagenes/altura.png" alt="Height">
-                            <input type="tel" placeholder="170" id="inputAltura">
-                            <label for="">CM</label>
-                        </div>
-                    </div>
-                    <div class="divWeight col-sm-12 col-md-6">
-                        <h4>¿Cúal es tu peso actual?</h4>
-                        <div>
-                            <img class="imgWeight" src="imagenes/peso.png" alt="Weight">
-                            <input type="tel" placeholder="75" id= "inputPeso">
-                            <label for="">KG</label>
+                            <p class="macrosTitle">LIPIDOS</p>
+                            <p id="boxLIP" class="bg-success macrosBox"></p>
                         </div>
                     </div>
                     <div>
-                        <div id="calculoIMC">CALCULO DE IMC</div>
-                        <div id="calculoPesoIdeal">CALCULO DE PESO IDEAL</div>
-                        <div id="calculoCalorias">CALCULO DE CALORIAS</div>
+                        <div id="macroTotal" class="d-flex align-self-center"></div>
+                        <div id="barraResultadosDOM"class="none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="sectionCalculadora">
+            <h2 class="titles">CALCULÁ TUS NECESIDADES</h2>
+            <h3 class="titleCalculos">Necesitamos algunos datos sobre vos para poder realizar los cálculos de forma más específica:</h3>
+            <form action="">
+                <div class="globalContainer row" id="globalContainer">
+                    <div class="divGender col-sm-12 col-md-6">
+                        <h4 class="text-center">¿Cúal es tu género?</h4>
+                        <div class="d-flex justify-content-evenly">
+                            <img class="imgsGender" src="imagenes/man.png" alt="Icon of a man">
+                            <img class="imgsGender" src="imagenes/girl.png" alt="Icon of a woman">
+                        </div>
+                        <div>
+                            <form action="">
+                                <div class="d-flex justify-content-evenly containerInputsGender">
+                                    <input type="radio" name="gender" id="inputHombre" class="inputsGender leftInputGender">
+                                    <input type="radio" name="gender" id="inputMujer" class="inputsGender rightInputGender">
+                                </div>
+                                <div class="d-flex justify-content-around containerLabelGender">
+                                    <label for="">Hombre</label>
+                                    <label for="">Mujer</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divActFisica col-sm-12 col-md-12 col-xl-12">
+                        <h4 class="text-center">Selecciona tu nivel de actividad física: </h4>
+                        <div class="d-flex justify-content-evenly containerImgsActFisica">
+                            <img class="imgActFisicaSedentaria" src="imagenes/ejercicio-sedentario.png" alt="Actividad fisica sedentaria">
+                            <img class="imgActFisicaModerada" src="imagenes/ejercicio-moderado.png" alt="Actividad fisica moderada">
+                            <img class="imgActFisicaIntensa" src="imagenes/ejercicio-intenso.png" alt="Actividad física intensa">
+                        </div>
+                        <div>
+                            <form action="">
+                                <div class="d-flex justify-content-evenly containerInputsActFisica">
+                                    <input type="radio" name="actividadFisica" id="inputActFisicaSedentaria" class="inputsActFisica">
+                                    <input type="radio" name="actividadFisica" id="inputActFisicaModerada" class="inputsActFisica">
+                                    <input type="radio" name="actividadFisica" id="inputActFisicaIntensa" class="inputsActFisica">
+                                </div>
+                                <div class="d-flex justify-content-around containerInputsActFisica">
+                                    <label for="">Sedentario</label>
+                                    <label for="">Moderado</label>
+                                    <label for="">Intenso</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="divHeight col-sm-12 col-md-6">
+                        <h4 class="text-center">¿Cúanto medís?</h4>
+                        <div class="d-flex justify-content-evenly containerHeight">
+                            <div>
+                                <img class="imgHeight" src="imagenes/altura.png" alt="Height">
+                            </div>
+                                <div class="align-self-center">
+                                <input type="tel" placeholder="170" id="inputAltura" autocomplete="off">
+                                <label for="">CM</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divWeight col-sm-12 col-md-6">
+                        <h4 class="text-center">¿Cúal es tu peso actual?</h4>
+                        <div class="d-flex justify-content-evenly containerWeight">
+                            <div>
+                                <img class="imgWeight" src="imagenes/peso.png" alt="Weight">
+                            </div>
+                            <div class="align-self-center">
+                                <input type="tel" placeholder="75" id= "inputPeso" autocomplete="off">
+                                <label for="">KG</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divAge col-sm-12 col-md-6">
+                        <h4 class="text-center">¿Cúantos años tenés?</h4>
+                        <div class="d-flex justify-content-evenly containerAge">
+                            <div>
+                                <img class="imgAge" src="imagenes/age-group.png" alt="Age">
+                            </div>
+                            <div class="align-self-center">
+                                <input type="text" placeholder="25" id="inputEdad" autocomplete="off">
+                                <label for="">Años</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-evenly containerCalculos col-sm-12 col-md-6">
+                        <div id="calculoIMC">
+                            <p>CALCULAR IMC</p> 
+                        </div>
+                        <div id="calculoPesoIdeal">
+                            <p>CALCULO DE PESO IDEAL</p>  
+                        </div>
+                        <div id="calculoCalorias">
+                            <p>CALCULO DE CALORIAS</p> 
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-evenly containerCalculos col-sm-12 col-md-6">
+                        <div class="none" id="calculoIMC2"></div>
+                        <div class="none" id="calculoPesoIdeal2"></div>
+                        <div class="none" id="calculoCalorias2"></div>
                     </div>
                 </div>
             </form>

@@ -72,6 +72,11 @@ body {
     height: 400px;
 }
 
+.tituloTablaAlimentos {
+    font-size: 20px;
+    margin-bottom: 2rem;
+}
+
 .containerTableFood::-webkit-scrollbar {
     width: 15px;
     background-color: darkgrey;
@@ -111,8 +116,8 @@ input[type=number] {
     align-self: center;
 }
 
-.macrosTitle {
-    text-align: center;
+.containerGramosMacros {
+    flex-wrap: wrap;
 }
 
 .macrosBox {
@@ -124,6 +129,10 @@ input[type=number] {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.totalCalorias {
+    background-color: steelblue;
 }
 
 .sectionCalculadora {
@@ -197,6 +206,7 @@ input[type=number] {
 .containerCalculos {
     margin-top: 2rem;
     width: 100%;
+    flex-wrap: wrap;
 }
 
 #calculoIMC {
@@ -205,10 +215,8 @@ input[type=number] {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
-}
-
-#resultadoIMC {
-    display: none;
+    max-width: 20rem;
+    position: relative;
 }
 
 #calculoPesoIdeal {
@@ -217,6 +225,7 @@ input[type=number] {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
+    max-width: 20rem;
 }
 
 #calculoCalorias {
@@ -225,17 +234,51 @@ input[type=number] {
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
+    max-width: 20rem;
 }
 
+.textoBtnCalculos {
+    margin: 0;
+}
 
-
+.divImcDOM, .divPesoIdealDOM, .divKcalDiariasDOM {
+    position: relative;
+}
 
 .inyectarDomImc {
     background-color: darksalmon;
     padding: 2rem;
     border-radius: 20px;
-    cursor: pointer;
     font-weight: 600;
+    height: auto;
+    max-width: 20rem;
+    margin-top: 2rem;
+    position: absolute;
+    left: 13.5%;
+}
+
+.inyectarDomPesoIdeal {
+    background-color: darkseagreen;
+    padding: 2rem;
+    border-radius: 20px;
+    height: auto;
+    font-weight: 600;
+    max-width: 20rem;
+    margin-top: 2rem;
+    position: absolute;
+    left: 38%;
+}
+
+.inyectarKcalDiariasDom {
+    background-color: teal;
+    padding: 2rem;
+    border-radius: 20px;
+    height: auto;
+    font-weight: 600;
+    max-width: 20rem;
+    margin-top: 2rem;
+    position: absolute;
+    right: 20.8%;
 }
 
 .none {
@@ -250,10 +293,18 @@ input[type=number] {
     width: 100%;
     height: 25px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     border-radius: 20px;
     background-color: transparent;
     margin: 2rem 0;
+}
+
+#resultadoHDC, #resultadoProt, #resultadoLip {
+    min-width: 4rem;
+}
+
+.centrarTotalGrCalorias {
+    transform: translate(0px, 7.5px);
 }
 
 #resultadoHDC {

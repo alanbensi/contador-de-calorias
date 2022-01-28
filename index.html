@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="d-flex justify-content-center" >
+    <!-- <header class="d-flex justify-content-center" >
         <nav class="navbar-expand-lg navbar-light header__nav">
             <div class="container-fluid w-100">
                 <button class="navbar-toggler header__nav__button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,11 +36,12 @@
                 </div>
             </div>
         </nav>
-    </header>
+    </header> -->
     <main>
         <h1 class="titles">CONTADOR DE CALORÍAS</h1>
         <div class="d-flex">
             <div class="w-50 containerTableFood">
+                <h3 class="text-center tituloTablaAlimentos">Ingresa la cantidad de alimento/s para calcular sus calorias</h3>
                 <form action="">
                     <table class="table table-responsive whiteTable">
                         <thead>
@@ -184,26 +185,27 @@
                     </table>
                 </form>
             </div>
-            <div class="d-flex w-50">
-                <div class="macrosTable">
-                    <div class="d-flex justify-content-evenly">
-                        <div>
-                            <p class="macrosTitle">HIDRATOS DE CARBONO</p>
-                            <p id="boxHDC" class="bg-warning macrosBox"></p>
-                        </div>
-                        <div>
-                            <p class="macrosTitle">PROTEINAS</p>
-                            <p id="boxPROT" class="bg-danger macrosBox"></p>
-                        </div>
-                        <div>
-                            <p class="macrosTitle">LIPIDOS</p>
-                            <p id="boxLIP" class="bg-success macrosBox"></p>
-                        </div>
+            <div class="d-flex w-50 macrosTable">
+                <div class="d-flex justify-content-evenly containerGramosMacros">
+                    <div>
+                        <p class="text-center">HIDRATOS DE CARBONO</p>
+                        <p id="boxHDC" class="bg-warning macrosBox"></p>
                     </div>
                     <div>
-                        <div id="macroTotal" class="d-flex align-self-center"></div>
-                        <div id="barraResultadosDOM"class="none"></div>
+                        <p class="text-center">PROTEINAS</p>
+                        <p id="boxPROT" class="bg-danger macrosBox"></p>
                     </div>
+                    <div>
+                        <p class="text-center">LIPIDOS</p>
+                        <p id="boxLIP" class="bg-success macrosBox"></p>
+                    </div>
+                    <div>
+                        <p class="text-center">CALORIAS TOTALES:</p>
+                        <p class="totalCalorias macrosBox text-center" id="macroTotal"></p>
+                    </div>
+                </div>
+                <div>
+                    <div id="barraResultadosDOM"class="none"></div>
                 </div>
             </div>
         </div>
@@ -291,19 +293,23 @@
                     </div>
                     <div class="d-flex justify-content-evenly containerCalculos col-sm-12 col-md-6">
                         <div id="calculoIMC">
-                            <p>CALCULAR IMC</p> 
+                            <p class="textoBtnCalculos">CALCULAR IMC</p> 
                         </div>
                         <div id="calculoPesoIdeal">
-                            <p>CALCULO DE PESO IDEAL</p>  
+                            <p class="textoBtnCalculos">CALCULAR DE PESO IDEAL</p>  
                         </div>
                         <div id="calculoCalorias">
-                            <p>CALCULO DE CALORIAS</p> 
+                            <p class="textoBtnCalculos">CALCULAR CALORIAS DIARIAS</p> 
                         </div>
                     </div>
-                    <div class="d-flex justify-content-evenly containerCalculos col-sm-12 col-md-6">
-                        <div class="none" id="calculoIMC2"></div>
-                        <div class="none" id="calculoPesoIdeal2"></div>
-                        <div class="none" id="calculoCalorias2"></div>
+                    <div class="divImcDOM">
+                        <div class="none" id="inyectarImcDOM"></div>
+                    </div>
+                    <div class="divPesoIdealDOM">
+                        <div class="none" id="inyectarPesoIdealDOM"></div>
+                    </div>
+                    <div class="divKcalDiariasDOM">
+                        <div class="none" id="inyectarKcalDiariasDOM"></div>
                     </div>
                 </div>
             </form>

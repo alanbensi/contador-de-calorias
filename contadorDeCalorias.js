@@ -1,4 +1,4 @@
-// CONSTANTES A USAR DOM
+// CONSTANTES DOM
 
 const inputs = Array.from (document.getElementsByClassName ("inputTable"));
 const globalContainer = document.getElementById ("globalContainer");
@@ -6,17 +6,20 @@ const boxHDC = document.getElementById ("boxHDC");
 const boxPROT = document.getElementById ("boxPROT"); 
 const boxLIP = document.getElementById ("boxLIP");
 const macroTotal = document.getElementById ("macroTotal"); 
-const inputGenero = document.querySelector('input[name="gender"]:checked');
 const inputHombre = document.getElementById ("inputHombre");
 const inputMujer = document.getElementById ("inputMujer"); 
-const inputActividadFisica = document.querySelector('input[name="actividadFisica"]:checked');
+const inputActSedentaria = document.getElementById ("inputActFisicaSedentaria");
+const inputActModerada = document.getElementById ("inputActFisicaModerada");
+const inputActIntensa = document.getElementById ("inputActFisicaIntensa");
 const inputAltura = document.getElementById ("inputAltura"); 
 const inputPeso = document.getElementById ("inputPeso");
 const inputEdad = document.getElementById ("inputEdad");
 const calculoIMC = document.getElementById ("calculoIMC"); 
-const calculoIMC2 = document.getElementById ("calculoIMC2");
-const calculoPesoIdeal2 = document.getElementById ("calculoPesoIdeal2");
-const calculoCalorias2 = document.getElementById ("calculoCalorias2");
+const calculoPesoIdeal = document.getElementById ("calculoPesoIdeal");
+const calculoCalorias = document.getElementById ("calculoCalorias");
+const inyectarImcDOM = document.getElementById ("inyectarImcDOM");
+const inyectarPesoIdealDOM = document.getElementById ("inyectarPesoIdealDOM");
+const inyectarKcalDiariasDOM = document.getElementById ("inyectarKcalDiariasDOM");
 const infoGuardada = JSON.parse (localStorage.getItem ("usuario")); 
 const barraResultadosDOM = document.getElementById ("barraResultadosDOM");
 
@@ -68,33 +71,44 @@ const insertarTotal = ()=> {
     let totalPROT = 0; 
     let totalLIP = 0; 
     inputs.map (input => {
-        if (!isNaN (Number(input.value))) {
+        if (!isNaN (input.value) && (input.value > 0)) {
             totalHDC = multiplicarHidratos (input.value, eval (input.name)) + totalHDC;
             totalPROT = multiplicarProt (input.value, eval (input.name)) + totalPROT;
             totalLIP = multiplicarLipidos (input.value, eval (input.name)) + totalLIP;
-            boxHDC.innerHTML = totalHDC;
-            boxPROT.innerHTML = totalPROT;
-            boxLIP.innerHTML = totalLIP;
+            boxHDC.innerHTML =`${totalHDC.toFixed (1)} GRAMOS`;
+            boxPROT.innerHTML = `${totalPROT.toFixed (1)} GRAMOS`;
+            boxLIP.innerHTML = `${totalLIP.toFixed (1)} GRAMOS`;
             const resultadoCalorias = (totalPROT + totalHDC) *4 + (totalLIP)*9;
-            macroTotal.innerHTML = `Las calorias totales son: ${resultadoCalorias.toFixed (0)}`;
+            macroTotal.innerHTML = `${resultadoCalorias.toFixed (0)} KCAL`;
             const totalBarra = totalHDC + totalPROT + totalLIP;
             const porcentajeHDC = (100 * totalHDC) / totalBarra; 
             const porcentajeProt = (100 * totalPROT) / totalBarra;
             const porcentajeLIP = (100 * totalLIP) / totalBarra;
             barraResultadosDOM.className = "barraResultados"; 
             barraResultadosDOM.innerHTML= `
-            <div id="resultadoHDC" style ="width: ${porcentajeHDC}%" class="bg-warning">
-                <p id="parrafo1"> ${porcentajeHDC.toFixed (0)}% </p> 
+            <div>
+                <p class="text-center"> Los porcentajes totales de macronutrientes en las cantidades elegidas son: </p>
             </div>
-            <div id= "resultadoProt" style ="width: ${porcentajeProt}%" class ="bg-danger">
-                <p class"parrafo1"> ${porcentajeProt.toFixed (0)}%</p> 
-            </div>
-            <div id="resultadoLip" style = "width: ${porcentajeLIP}%" class ="bg-success">
-                <p class"parrafo1"> ${porcentajeLIP.toFixed (0)}% </p> 
+            <div class="d-flex">    
+                <div id="resultadoHDC" style ="width: ${porcentajeHDC}%" class="bg-warning d-flex justify-content-center">
+                    <p class ="centrarTotalGrCalorias"> ${porcentajeHDC.toFixed (0)}% </p> 
+                </div>
+                <div id= "resultadoProt" style ="width: ${porcentajeProt}%" class ="bg-danger d-flex justify-content-center">
+                    <p class="centrarTotalGrCalorias"> ${porcentajeProt.toFixed (0)}%</p> 
+                </div>
+                <div id="resultadoLip" style = "width: ${porcentajeLIP}%" class ="bg-success d-flex justify-content-center">
+                    <p class="centrarTotalGrCalorias"> ${porcentajeLIP.toFixed (0)}% </p> 
+                </div>
             </div>`
             if (totalBarra === 0){ 
                 barraResultadosDOM.className = "none"
             }
+        } else if (input.value < 0) {
+            boxHDC.innerHTML =`Ingresá solo numeros positivos`;
+            boxPROT.innerHTML = `Ingresá solo numeros positivos`;
+            boxLIP.innerHTML = `Ingresá solo numeros positivos`;
+            barraResultadosDOM.className = "none";
+            macroTotal.innerHTML = ""
         }
     })
 }
@@ -106,34 +120,71 @@ const calcularImcDOM = () => {
     const tallaEnMetros= inputAltura.value/100; 
     const tallaAlCuadrado = tallaEnMetros * tallaEnMetros;
     const valorImcUsuario = inputPeso.value / tallaAlCuadrado;
-    // let contenedorImcResultado = document.createElement ("p");
-    if (calculoIMC2.className === "none") {
-        calculoIMC2.className = "inyectarDomImc";
-        calculoPesoIdeal2.className = "hidden";
-        calculoCalorias2.className = "hidden";
+    inyectarImcDOM.className = "inyectarDomImc";
+    if (!isNaN (valorImcUsuario)) {
+        inyectarImcDOM.innerHTML = `Tu IMC es: ${valorImcUsuario.toFixed (2)}`;
     } else {
-        calculoIMC2.className = "none";
-        calculoPesoIdeal2.className = "none";
-        calculoCalorias2.className = "none";
+        inyectarImcDOM.innerHTML = `Uno o más valores no son numeros. Por favor ingresa solo numeros (Ejemplo: Peso 64.6)`;
     }
-    calculoIMC2.innerHTML = `Tu IMC es: ${valorImcUsuario.toFixed (2)}`
+    if (!inputHombre.checked && !inputMujer.checked) {
+        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
+        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
+        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    }
 }
 
 calculoIMC.addEventListener ("click", calcularImcDOM);
 
 //CALCULAR PESO IDEAL E INYECTAR EN DOM
 
-// const calcularPesoIdealDom = () => {
-//     const pesoIdealHombre = inputAltura.value -100;
-//     const pesoMenosDiezPorciento = (pesoIdealHombre * 0.1); 
-//     const pesoIdealMujer = pesoIdealHombre - pesoMenosDiezPorciento;
-//     if (inputGenero == inputHombre) {
-//         pesoIdealHombre.innerHTML =; 
-//     }else {
-//         pesoIdealMujer.innerHTML = ; 
-//     }
-// } 
+const calcularPesoIdealDom = () => {
+    const pesoIdealHombre = inputAltura.value -100;
+    const pesoMenosDiezPorciento = (pesoIdealHombre * 0.1); 
+    const pesoIdealMujer = pesoIdealHombre - pesoMenosDiezPorciento;
+    inyectarPesoIdealDOM.className = "inyectarDomPesoIdeal";
+    if (inputHombre.checked) {
+        inyectarPesoIdealDOM.innerHTML = `Tu peso ideal es: ${pesoIdealHombre} KG`;
+    }else if (inputMujer.checked) {
+        inyectarPesoIdealDOM.innerHTML = `Tu peso ideal es: ${pesoIdealMujer} KG`;
+    }
+    if (!inputHombre.checked && !inputMujer.checked) {
+        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
+        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
+        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    }
+}; 
 
+calculoPesoIdeal.addEventListener ("click", calcularPesoIdealDom);
+
+
+// CALCULAR CALORIAS DIARIAS E INYECTAR EN DOM
+
+const calculoCaloriasDOM = ()=> {
+    const kcalSedentario = inputPeso.value * 20;
+    const kcalModerado = inputPeso.value * 25;
+    const kcalIntenso = inputPeso.value * 30;
+    inyectarKcalDiariasDOM.className = "inyectarKcalDiariasDom"
+    if (inputActSedentaria.checked) {
+        inyectarKcalDiariasDOM.innerHTML = `${kcalSedentario} KCAL /día`;
+    } else if (inputActModerada.checked) {
+        inyectarKcalDiariasDOM.innerHTML = `${kcalModerado} KCAL /día`;
+    } else if (inputActIntensa.checked) {
+        inyectarKcalDiariasDOM.innerHTML = `${kcalIntenso} KCAL /día`;
+    }
+    if (!inputHombre.checked && !inputMujer.checked) {
+        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
+        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
+        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    }
+};
+
+calculoCalorias.addEventListener ("click", calculoCaloriasDOM);
 
 const guardarInfo = () => {
     const datosUsuario = {

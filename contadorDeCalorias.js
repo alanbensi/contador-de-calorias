@@ -75,6 +75,11 @@ const insertarTotal = ()=> {
             totalHDC = multiplicarHidratos (input.value, eval (input.name)) + totalHDC;
             totalPROT = multiplicarProt (input.value, eval (input.name)) + totalPROT;
             totalLIP = multiplicarLipidos (input.value, eval (input.name)) + totalLIP;
+            $(".macrosBox").animate ({"font-weight": "700","font-size": "18px","padding": "3rem 10rem"})
+            .delay (10000)
+            .animate ({"font-weight": "400","font-size": "16px","padding": "1rem"})
+            .delay (2000)
+            .animate ({"font-weight": "700","font-size": "18px","padding": "3rem 10rem"});
             boxHDC.innerHTML =`${totalHDC.toFixed (1)} GRAMOS`;
             boxPROT.innerHTML = `${totalPROT.toFixed (1)} GRAMOS`;
             boxLIP.innerHTML = `${totalLIP.toFixed (1)} GRAMOS`;
@@ -108,12 +113,100 @@ const insertarTotal = ()=> {
             boxPROT.innerHTML = `Ingresá solo numeros positivos`;
             boxLIP.innerHTML = `Ingresá solo numeros positivos`;
             barraResultadosDOM.className = "none";
-            macroTotal.innerHTML = ""
+            macroTotal.innerHTML = "";
         }
     })
 }
 
 inputs.map (input=> (input.addEventListener ("keyup", insertarTotal)));
+
+//AGREGO BOTON DE REINICIAR CALORIAS CON JQUERY Y VACIA LOS VALORES DEL CONTADOR DE CALORIAS
+
+$("#containerClearButton").prepend (`<button id="btn-reiniciarCalorias">Reiniciar contador de calorías</button>`);
+$("#btn-reiniciarCalorias").css({"padding": "1rem",
+    "border": "solid 1px",
+    "font-weight": "600",
+    "border-radius": "20px",
+    "margin": "1rem",
+    "background-color": "darkcyan",
+    "color": "white",
+    "margin-top": "3rem"});
+
+$("#btn-reiniciarCalorias").click (function (){
+    $(".inputTable").val("");
+    if ($(".inputTable").val("")) {
+        boxHDC.innerHTML = "";
+        boxPROT.innerHTML = "";
+        boxLIP.innerHTML = "";
+        macroTotal.innerHTML = "";
+        barraResultadosDOM.className = "none"; 
+        $(".macrosBox").css ({"padding":"1rem"});
+    }
+});
+
+
+// AGREGAR BOTON DE + RECETAS QUE LLAMA A JSON
+
+$("#containerBtnRecetas").prepend(`<button id="btn-masRecetas">Click para ver recetas</button>`);
+$("#btn-masRecetas").css({"padding": "1rem",
+    "border": "solid 1px",
+    "font-weight": "600",
+    "border-radius": "20px",
+    "margin-right": "3rem",
+    "background-color": "brown",
+    "color": "white",
+    "margin-top": "3rem"});
+
+$("#btn-masRecetas").click (function () {
+    $.get ("datos.json", (data)=> {
+        data.forEach((receta) => {
+            $("#containerRecetas").prepend (`
+            <div class="cardsRecetas" style="width: 20rem;">
+                <img src="${receta.Imagen}" class="card-img-top imagenesCards">
+                <div class="card-body">
+                    <h4 class="alimentoCard">${receta.Alimento}</h4>
+                    <p class="ingredientesCard">${receta.Ingredientes}</p>
+                    <div class ="textoKcalRecetas"> 
+                        <p id="totalKcalReceta" >En 100 gramos:  ${receta.Calorías} </p> 
+                    </div>
+                </div>
+            </div>`
+            )
+            if (receta.Kcal <= 100) {
+                $("#totalKcalReceta").css ({
+                    "color": "white",
+                    "background-color": "#198754",
+                    "border": "solid 1px black",
+                    "border-radius": "15px",
+                    "text-align": "center", 
+                    "padding": "0.5rem",
+                    "font-weight": "600",
+
+                })
+            } else if (receta.Kcal >=100 && receta.Kcal <= 200) {
+                $("#totalKcalReceta").css ({
+                    "color": "white",
+                    "background-color": "#FFC107",
+                    "border": "solid black 1px",
+                    "border-radius": "15px",
+                    "text-align": "center", 
+                    "padding": "0.5rem",
+                    "font-weight": "600"
+                })
+            } else {
+                $("#totalKcalReceta").css ({
+                    "color": "white",
+                    "background-color": "#DC3545",
+                    "border": "solid black 1px",
+                    "border-radius": "15px",
+                    "text-align": "center", 
+                    "padding": "0.5rem",
+                    "font-weight": "600"
+                })
+            }
+        });
+    })
+});
 
 // CALCULAR IMC E INYECTAR EN DOM
 const calcularImcDOM = () => {

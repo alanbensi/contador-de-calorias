@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "Alimento": "Fideos a la Bolognesa", 
+        "Imagen" : "imagenes/fideos-bolognesa.jpg",
+        "Ingredientes": "INGREDIENTES: Fideos, tomates, carne picada y vegetales",
+        "Calorías": "130 Kcal",
+        "Kcal": 130 
+    },
+    {
+        "id": 2,
+        "Alimento": "Paella", 
+        "Imagen" : "imagenes/Paella.jpg",
+        "Ingredientes": "INGREDIENTES: Arroz, pollo, mariscos y vegetales",
+        "Calorías": "143 kcal",
+        "Kcal": 143
+    },
+    {
+        "id": 3,
+        "Alimento": "Ensalada Cesar", 
+        "Imagen" : "imagenes/Ensalada-Cesar.jpg",
+        "Ingredientes": "INGREDIENTES: Pollo, queso parmesano, croutones de pan, lechuga y aderezo Cesar  ",
+        "Calorías": "98 kcal",
+        "Kcal": 98
+    },
+    {
+        "id": 4,
+        "Alimento": "Wrap de pollo y vegetales", 
+        "Imagen" : "imagenes/Wrap-pollo.jpg",
+        "Ingredientes": "INGREDIENTES: Pollo, tortilla de maiz/trigo, lechuga, tomate, cebolla morada y queso untable",
+        "Calorías": "286 kcal",
+        "Kcal": 286
+    },
+    {
+        "id": 5,
+        "Alimento": "Pizza napolitana", 
+        "Imagen" : "imagenes/Pizza-napolitana.jpg",
+        "Ingredientes": "INGREDIENTES: Masa de pizza (Harina, sal, levadura, aceite y agua), salsa de tomate, jamón y queso muzzarella",
+        "Calorías": "249 kcal",
+        "Kcal": 249
+    },
+    {
+        "id": 6,
+        "Alimento": "Omelette de jamón y queso", 
+        "Imagen" : "imagenes/Omelette-jyq.jpg",
+        "Ingredientes": "INGREDIENTES: Huevos, Jamón y Queso",
+        "Calorías": "184 kcal",
+        "Kcal": 184
+    },
+    {
+        "id": 7,
+        "Alimento": "Carne con papas al horno", 
+        "Imagen" : "imagenes/Carne-papas-horno.jpg",
+        "Ingredientes": "INGREDIENTES: Bife de chorizo, papas, aceite",
+        "Calorías": "116 kcal",
+        "Kcal": 116
+    },
+    {
+        "id": 8,
+        "Alimento": "Ensalada de frutas", 
+        "Imagen" : "imagenes/Ensalada-de-frutas.jpg",
+        "Ingredientes": "INGREDIENTES: Naranja, arandanos, uvas, kiwi, frutillas, duraznos",
+        "Calorías": "52 kcal",
+        "Kcal": 52
+    },
+    {
+        "id": 9,
+        "Alimento": "Cuarto de libra", 
+        "Imagen" : "imagenes/Cuarto-de-libra.jpg",
+        "Ingredientes": "INGREDIENTES: Pan, hamburguesa, cheddar, mostaza, kétchup, cebolla y pepinillos",
+        "Calorías": "272 kcal",
+        "Kcal": 272
+    }
+]

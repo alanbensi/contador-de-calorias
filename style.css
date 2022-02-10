@@ -135,8 +135,49 @@ input[type=number] {
     background-color: steelblue;
 }
 
+.containerBtns {
+    margin-top: 2rem;
+}
+
+#containerRecetas {
+    flex-wrap: wrap;
+}
+
+.cardsRecetas {
+    margin: 2rem 5rem;
+    border: white solid 2px;
+    border-radius: 15px;
+    height: 380px;
+    position: relative;
+}
+
+.imagenesCards {
+    border-radius: 15px;
+    max-height: 180px;
+    object-fit: cover;
+}
+
+.alimentoCard {
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ingredientesCard {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+}
+
+.textoKcalRecetas {
+    position: absolute;
+    bottom: 0px;
+    left: 60px;
+}
+
 .sectionCalculadora {
-    margin-top: 7rem;
+    margin-top: 3rem;
 }
 
 .titleCalculos {

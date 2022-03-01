@@ -9,19 +9,19 @@
     },
     {
         "id": 2,
-        "Alimento": "Paella", 
-        "Imagen" : "imagenes/Paella.jpg",
-        "Ingredientes": "INGREDIENTES: Arroz, pollo, mariscos y vegetales",
-        "Calorías": "143 kcal",
-        "Kcal": 143
-    },
-    {
-        "id": 3,
         "Alimento": "Ensalada Cesar", 
         "Imagen" : "imagenes/Ensalada-Cesar.jpg",
         "Ingredientes": "INGREDIENTES: Pollo, queso parmesano, croutones de pan, lechuga y aderezo Cesar  ",
         "Calorías": "98 kcal",
         "Kcal": 98
+    },
+    {
+        "id": 3,
+        "Alimento": "Paella", 
+        "Imagen" : "imagenes/Paella.jpg",
+        "Ingredientes": "INGREDIENTES: Arroz, pollo, mariscos y vegetales",
+        "Calorías": "143 kcal",
+        "Kcal": 143
     },
     {
         "id": 4,

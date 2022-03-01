@@ -75,11 +75,7 @@ const insertarTotal = ()=> {
             totalHDC = multiplicarHidratos (input.value, eval (input.name)) + totalHDC;
             totalPROT = multiplicarProt (input.value, eval (input.name)) + totalPROT;
             totalLIP = multiplicarLipidos (input.value, eval (input.name)) + totalLIP;
-            $(".macrosBox").animate ({"font-weight": "700","font-size": "18px","padding": "3rem 10rem"})
-            .delay (10000)
-            .animate ({"font-weight": "400","font-size": "16px","padding": "1rem"})
-            .delay (2000)
-            .animate ({"font-weight": "700","font-size": "18px","padding": "3rem 10rem"});
+            $(".macrosBox").animate ({"font-weight": "700","font-size": "17px","padding": "3.5rem 10rem"});
             boxHDC.innerHTML =`${totalHDC.toFixed (1)} GRAMOS`;
             boxPROT.innerHTML = `${totalPROT.toFixed (1)} GRAMOS`;
             boxLIP.innerHTML = `${totalLIP.toFixed (1)} GRAMOS`;
@@ -123,14 +119,6 @@ inputs.map (input=> (input.addEventListener ("keyup", insertarTotal)));
 //AGREGO BOTON DE REINICIAR CALORIAS CON JQUERY Y VACIA LOS VALORES DEL CONTADOR DE CALORIAS
 
 $("#containerClearButton").prepend (`<button id="btn-reiniciarCalorias">Reiniciar contador de calorías</button>`);
-$("#btn-reiniciarCalorias").css({"padding": "1rem",
-    "border": "solid 1px",
-    "font-weight": "600",
-    "border-radius": "20px",
-    "margin": "1rem",
-    "background-color": "darkcyan",
-    "color": "white",
-    "margin-top": "3rem"});
 
 $("#btn-reiniciarCalorias").click (function (){
     $(".inputTable").val("");
@@ -148,64 +136,33 @@ $("#btn-reiniciarCalorias").click (function (){
 // AGREGAR BOTON DE + RECETAS QUE LLAMA A JSON
 
 $("#containerBtnRecetas").prepend(`<button id="btn-masRecetas">Click para ver recetas</button>`);
-$("#btn-masRecetas").css({"padding": "1rem",
-    "border": "solid 1px",
-    "font-weight": "600",
-    "border-radius": "20px",
-    "margin-right": "3rem",
-    "background-color": "brown",
-    "color": "white",
-    "margin-top": "3rem"});
+
+function añadirClase (receta) {
+    if (receta.Kcal <= 100) {
+        return 'cardGreen';
+    } else if (receta.Kcal >=100 && receta.Kcal <= 200) {
+        return'cardYellow'; 
+    } else {
+        return 'cardRed';
+    }
+}
 
 $("#btn-masRecetas").click (function () {
     $.get ("datos.json", (data)=> {
-        data.forEach((receta) => {
-            $("#containerRecetas").prepend (`
-            <div class="cardsRecetas" style="width: 20rem;">
+        const cards = data.map((receta) => `
+            <div class="cardsRecetas">
                 <img src="${receta.Imagen}" class="card-img-top imagenesCards">
                 <div class="card-body">
                     <h4 class="alimentoCard">${receta.Alimento}</h4>
                     <p class="ingredientesCard">${receta.Ingredientes}</p>
                     <div class ="textoKcalRecetas"> 
-                        <p id="totalKcalReceta" >En 100 gramos:  ${receta.Calorías} </p> 
+                        <p id="totalKcalReceta" class= "${añadirClase (receta)}">En 100 gramos:  ${receta.Calorías} </p> 
                     </div>
                 </div>
             </div>`
-            )
-            if (receta.Kcal <= 100) {
-                $("#totalKcalReceta").css ({
-                    "color": "white",
-                    "background-color": "#198754",
-                    "border": "solid 1px black",
-                    "border-radius": "15px",
-                    "text-align": "center", 
-                    "padding": "0.5rem",
-                    "font-weight": "600",
-
-                })
-            } else if (receta.Kcal >=100 && receta.Kcal <= 200) {
-                $("#totalKcalReceta").css ({
-                    "color": "white",
-                    "background-color": "#FFC107",
-                    "border": "solid black 1px",
-                    "border-radius": "15px",
-                    "text-align": "center", 
-                    "padding": "0.5rem",
-                    "font-weight": "600"
-                })
-            } else {
-                $("#totalKcalReceta").css ({
-                    "color": "white",
-                    "background-color": "#DC3545",
-                    "border": "solid black 1px",
-                    "border-radius": "15px",
-                    "text-align": "center", 
-                    "padding": "0.5rem",
-                    "font-weight": "600"
-                })
-            }
-        });
-    })
+        );
+        $ ("#containerRecetas").html(cards.join(""));
+    });
 });
 
 // CALCULAR IMC E INYECTAR EN DOM
@@ -214,17 +171,10 @@ const calcularImcDOM = () => {
     const tallaAlCuadrado = tallaEnMetros * tallaEnMetros;
     const valorImcUsuario = inputPeso.value / tallaAlCuadrado;
     inyectarImcDOM.className = "inyectarDomImc";
-    if (!isNaN (valorImcUsuario)) {
+    if ((inputHombre.checked || inputMujer.checked) && (inputActSedentaria.checked || inputActModerada.checked || inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)){
         inyectarImcDOM.innerHTML = `Tu IMC es: ${valorImcUsuario.toFixed (2)}`;
     } else {
-        inyectarImcDOM.innerHTML = `Uno o más valores no son numeros. Por favor ingresa solo numeros (Ejemplo: Peso 64.6)`;
-    }
-    if (!inputHombre.checked && !inputMujer.checked) {
-        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
-        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
-        inyectarImcDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+        inyectarImcDOM.innerHTML = `Por favor completá todos los campos y escribí solo numeros positivos (Ejemplo: Peso 64.6)`;
     }
 }
 
@@ -237,17 +187,12 @@ const calcularPesoIdealDom = () => {
     const pesoMenosDiezPorciento = (pesoIdealHombre * 0.1); 
     const pesoIdealMujer = pesoIdealHombre - pesoMenosDiezPorciento;
     inyectarPesoIdealDOM.className = "inyectarDomPesoIdeal";
-    if (inputHombre.checked) {
+    if ((inputHombre.checked && !inputMujer.checked) && (inputActSedentaria.checked || inputActModerada.checked || inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)) {
         inyectarPesoIdealDOM.innerHTML = `Tu peso ideal es: ${pesoIdealHombre} KG`;
-    }else if (inputMujer.checked) {
+    } else if ((!inputHombre.checked && inputMujer.checked) && (inputActSedentaria.checked || inputActModerada.checked || inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)) {
         inyectarPesoIdealDOM.innerHTML = `Tu peso ideal es: ${pesoIdealMujer} KG`;
-    }
-    if (!inputHombre.checked && !inputMujer.checked) {
-        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
-        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
-        inyectarPesoIdealDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else {    
+        inyectarPesoIdealDOM.innerHTML = `Por favor completá todos los campos y escribí solo numeros positivos (Ejemplo: Peso 64.6)`
     }
 }; 
 
@@ -261,19 +206,14 @@ const calculoCaloriasDOM = ()=> {
     const kcalModerado = inputPeso.value * 25;
     const kcalIntenso = inputPeso.value * 30;
     inyectarKcalDiariasDOM.className = "inyectarKcalDiariasDom"
-    if (inputActSedentaria.checked) {
+    if ((inputHombre.checked || inputMujer.checked) && (inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)) {
         inyectarKcalDiariasDOM.innerHTML = `${kcalSedentario} KCAL /día`;
-    } else if (inputActModerada.checked) {
+    } else if ((inputHombre.checked || inputMujer.checked) && (!inputActSedentaria.checked && inputActModerada.checked && !inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)) {
         inyectarKcalDiariasDOM.innerHTML = `${kcalModerado} KCAL /día`;
-    } else if (inputActIntensa.checked) {
+    } else if ((inputHombre.checked || inputMujer.checked) && (!inputActSedentaria.checked && !inputActModerada.checked &&inputActIntensa.checked) && (inputAltura.value !== "" && inputAltura.value > 0) && (inputPeso.value !== "" && inputPeso.value > 0) && (inputEdad.value !== "" && inputEdad.value > 0)) {
         inyectarKcalDiariasDOM.innerHTML = `${kcalIntenso} KCAL /día`;
-    }
-    if (!inputHombre.checked && !inputMujer.checked) {
-        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputActSedentaria.checked && !inputActModerada.checked && !inputActIntensa.checked){
-        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
-    } else if (!inputAltura.value && !inputPeso.value && !inputEdad.value){
-        inyectarKcalDiariasDOM.innerHTML = `Completá todos los datos para obtener este resultado`;
+    } else {
+        inyectarKcalDiariasDOM.innerHTML = `Por favor completá todos los campos y escribí solo numeros positivos (Ejemplo: Peso 64.6)`
     }
 };
 
@@ -284,8 +224,6 @@ const guardarInfo = () => {
         edad: inputEdad.value,
         altura: inputAltura.value, 
         peso: inputPeso.value,
-        // genero: inputGenero.value,
-        // actividadFisica: inputActividadFisica.value 
     }; 
     const jsonUsuario = JSON.stringify (datosUsuario);
     localStorage.setItem ("usuario", jsonUsuario);
@@ -301,5 +239,3 @@ if (infoGuardada){
     inputAltura.value = infoGuardada.altura;
     inputPeso.value = infoGuardada.peso;
 }; 
-
-
